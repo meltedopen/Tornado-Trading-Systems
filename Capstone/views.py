@@ -23,14 +23,6 @@ def about_page(request):
     return render(request, "home_page.html", context)
 
 
-def stock_page(request):
-    context = {
-        "title": "Stock Page",
-        "content": "Welcome to the Stock Page"
-    }
-    return render(request, "home_page.html", context)
-
-
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
     context = {

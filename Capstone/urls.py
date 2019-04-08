@@ -32,16 +32,16 @@ from django.views.generic import TemplateView
 #     ProductFeaturedDetailView
 # )
 
-from .views import home_page, about_page, stock_page, contact_page, login_page, register_page
+from .views import home_page, about_page, contact_page, login_page, register_page
 
 urlpatterns = [
     path('', home_page, name='home'),
     path('about/', about_page, name='about'),
-    path('stock/', stock_page),
     path('contact/', contact_page, name='contact'),
     path('login/', login_page, name='login'),
     path('register/', register_page, name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
+    path('crypto/', include("crypto.urls")),
     path('products/', include("products.urls", namespace='products')),
     path('search/', include("search.urls", namespace='search')),
     # path('featured/', ProductFeaturedListView.as_view()),
