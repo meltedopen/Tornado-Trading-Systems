@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% include 'crypto/snippets/jumbotron.html' %}
+{% include 'crypto/snippets/table.html' %}
+
+  <div class="container">
+    <div class="row">
+      {% for x in api.Data %}
+        <div class="col-sm">
+          {% include 'crypto/snippets/card.html' %}
+          <br/>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  {{ api.Data }}
+
+{% endblock %}
