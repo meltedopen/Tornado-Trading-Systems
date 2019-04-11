@@ -1,22 +1,53 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} 
 {% block content %}
 
-<div class="text-center">
-      <h1>{{ title }}</h1>
-      <h1>Hello, world!</h1>
+<div class="container-contact">
+  <div class="container">
+  <div class="text-center">
+    <h1>Get In Touch With Us</h1>
+    <hr style="border-color:#83C653; border-width: 2px" width="10%">
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-success btn-lg">Submit</button>
+        <br /><br />
+      </form>
     </div>
-      <div class="row">
-        <div class="col">
-          <p>{{ content }}</p>
-          <div class="col-sm-6 col-12">
-            <form method="POST">
-              {% csrf_token %}
-              {{ form }}
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-4">
+      <h3 class="text-success">Social</h3>
+      <p style="margin-top: 20px;">
+                  <a class="fab fa-twitter footer-socialicon" target="_blank" href="https://twitter.com/"></a>
+                  <a class="fab fa-facebook footer-socialicon" target="_blank" href="https://www.facebook.com/"></a>
+                  <a class="fab fa-google-plus footer-socialicon" target="_blank" href="https://plus.google.com/"></a>
+                  <a class="fab fa-linkedin footer-socialicon" target="_blank" href="https://plus.google.com/"></a>
+              </p>
+      <div class="clearfix"></div>
+      <h3 class="text-success">Address</h3>
+      <p>225 Bush St. SF 94104, USA</p>
+      <p>+1 888 555 1234</p>
+      <p><a href="mailto:mail@example.com">mail@example.com</a></p>
+      <div class="clearfix"></div>
+      <h3>Open Hours</h3>
+      <p>Monday - Friday | 7am-8:30pm</p>
+      <p>Saturday | 9am-6:30pm</p>
+      <p>Sunday | 9am-5pm</p>
+    </div>
+  </div>
+  </div>
+</div>
 
-            <!-- <form method="POST">
+
+  </div>
+</div>
+
+
+
+      <!-- <form method="POST">
               {% csrf_token %}
               <input
                 type="text"
@@ -37,9 +68,8 @@
               ></textarea>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form> -->
-          </div>
-
-      </div>
     </div>
+  </div>
+</div>
 
 {% endblock %}

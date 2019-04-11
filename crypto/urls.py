@@ -5,6 +5,6 @@ from . import views
 # app_name = 'crypto'
 
 urlpatterns = [
-    path('', views.crypto_home, name="crypto_home"),
-    path('prices/', views.prices, name="prices"),
+    path('crypto/', views.crypto_home, name="crypto_home"),
+    path('prices/', views.crypto_prices, name="crypto_prices"),
 ]

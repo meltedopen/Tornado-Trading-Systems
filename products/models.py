@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 
-from .utils import unique_slug_generator
+from Capstone.utils import unique_slug_generator
 
 
 def get_filename_ext(filepath):
@@ -80,6 +80,10 @@ class Product(models.Model):
         return self.title
 
     def __unicode__(self):
+        return self.title
+
+    @property
+    def name(self):
         return self.title
 
 

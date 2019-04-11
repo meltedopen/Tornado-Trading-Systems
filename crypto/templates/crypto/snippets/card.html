@@ -1,8 +1,8 @@
-<div class="card" style="width: 18rem;">
+<div class="card">
   <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}">
-  <div class="card-body">
+  <div class="card-body h-100">
     <h5 class="card-title">{{ x.title }}</h5>
-    <p class="card-text">{{ x.body }}</p>
-    <a href="{{ x.url }}" class="btn btn-secondary">Read More...</a>
+    <p class="card-text">{{ x.body|linebreaks|truncatewords:25 }}</p>
+    <a href="{{ x.url }}" target='_blank' class="btn btn-secondary">Read More...</a>
   </div>
 </div>
