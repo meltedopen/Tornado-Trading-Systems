@@ -2,23 +2,24 @@
 
 {% block content %}
 
-
+<div class='col-12 col-md-6 mx-auto py-5'>
+  {% include 'search/snippets/crypto-search-form.html' %}
+  </div>
+  <div class="col-12">
+  <hr/>
+</div>
 {% include 'crypto/snippets/jumbotron.html' %}
 {% include 'crypto/snippets/table.html' %}
 
   <div class="container">
     <div class="row">
       {% for x in api.Data %}
-        <div class="col-sm">
+        <div class="col-sm-4 py-2">
           {% include 'crypto/snippets/card.html' %}
           <br/>
         </div>
       {% endfor %}
     </div>
   </div>
-
-
-
-  {{ api.Data }}
 
 {% endblock %}

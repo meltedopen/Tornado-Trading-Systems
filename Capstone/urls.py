@@ -20,37 +20,32 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import LogoutView
 from django.views.generic import TemplateView
 
-# from products.views import (
-#     ProductListView,
-#     product_list_view,
-#     ProductDetailView,
-#     ProductDetailSlugView,
-#     product_detail_view,
-#     ProductFeaturedListView,
-#     ProductFeaturedDetailView
-# )
 
-from .views import home_page, about_page, contact_page, login_page, register_page
+from accounts.views import login_page, register_page, guest_register_view
+from addresses.views import checkout_address_create_view, checkout_address_reuse_view
+from .views import home_page, about_page, contact_page
 
 urlpatterns = [
     path('', home_page, name='home'),
     path('about/', about_page, name='about'),
     path('contact/', contact_page, name='contact'),
     path('login/', login_page, name='login'),
+    path('checkout/address/create/', checkout_address_create_view,
+         name='checkout_address_create'),
+    path('checkout/address/reuse/', checkout_address_reuse_view,
+         name='checkout_address_reuse'),
+    path('register/guest/', guest_register_view, name='guest_register'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('cart/', include("carts.urls", namespace='cart')),
     path('register/', register_page, name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
-    path('crypto/', include("crypto.urls")),
+    path('', include("crypto.urls")),
     path('products/', include("products.urls", namespace='products')),
     path('search/', include("search.urls", namespace='search')),
-    # path('featured/', ProductFeaturedListView.as_view()),
-    # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
-    # path('products/', ProductListView.as_view()),
-    # path('products-fbv/', product_list_view),
-    # # path('products/<pk>/', ProductDetailView.as_view()),
-    # path('products/<slug>/', ProductDetailSlugView.as_view()),
-    # path('products-fbv/<int:pk>/', product_detail_view),
+
     path('admin/', admin.site.urls),
 ]
 

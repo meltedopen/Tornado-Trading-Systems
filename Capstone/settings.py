@@ -40,11 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps
+    'addresses',
+    'billing',
+    'accounts',
+    'orders',
     'crypto',
     'products',
+    'carts',
     'search',
     'tags',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'  # changes built in user model to my user model
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGOUT_REDIRECT_URL = '/login/'
 ROOT_URLCONF = 'Capstone.urls'
 
 TEMPLATES = [
