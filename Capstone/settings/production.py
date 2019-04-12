@@ -1,3 +1,4 @@
+import dj_database_url
 """
 Django settings for Capstone project.
 
@@ -27,7 +28,7 @@ SECRET_KEY = '+l-v$*(88vj80i0@i5a2tmsp+3l)302chzu#pedosv@w=shf%^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.herokuapp.com']
 
 
 # Application definition
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'  # changes built in user model to my user model
+LOGIN_URL = '/login/'
+LOGIN_URL_REDIRECT = '/'
+LOGOUT_URL = '/logout/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -95,6 +99,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 
 # Password validation
@@ -148,12 +156,24 @@ MEDIA_ROOT = os.path.join(os.path.dirname(
 
 # Let's Encrypt ssl/tls https
 
-CORS_REPLACE_HTTPS_REFERER = True
-HOST_SCHEME = "https://"
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_SECONDS = 1000000
-SECURE_FRAME_DENY = True
+# CORS_REPLACE_HTTPS_REFERER = True
+# HOST_SCHEME = "https://"
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_SECONDS = 1000000
+# SECURE_FRAME_DENY = True
+
+
+# WITHOUT SSL CERTIFICATE
+CORS_REPLACE_HTTPS_REFERER = False
+HOST_SCHEME = "http://"
+SECURE_PROXY_SSL_HEADER = None
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_SECONDS = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_FRAME_DENY = False

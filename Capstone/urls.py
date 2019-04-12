@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 
 from accounts.views import LoginView, RegisterView, guest_register_view
@@ -34,6 +34,8 @@ from .views import home_page, about_page, contact_page
 urlpatterns = [
     path('', home_page, name='home'),
     path('about/', about_page, name='about'),
+    path('accounts/', RedirectView.as_view(url='/account')),
+    path('account/', include("accounts.urls", namespace='accounts')),
     path('contact/', contact_page, name='contact'),
     path('login/', LoginView.as_view(), name='login'),
     path('checkout/address/create/', checkout_address_create_view,
@@ -45,12 +47,13 @@ urlpatterns = [
     path('cart/', include("carts.urls", namespace='cart')),
     path('billing/payment-method', payment_method_view,
          name='billing-payment-method'),
-
     path('register/', RegisterView.as_view(), name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
     path('', include("crypto.urls")),
     path('products/', include("products.urls", namespace='products')),
     path('search/', include("search.urls", namespace='search')),
+    path('settings/', RedirectView.as_view(url='/accounts/')),
+
 
     path('admin/', admin.site.urls),
 ]
